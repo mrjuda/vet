@@ -1,7 +1,4 @@
-/*Queries that provide answers to the questions from all projects.*/
-/*
-Write queries for the following quests:
-*/
+/* Write queries for the following quests: */
 
 -- Find all animals whose name ends in "mon".
 SELECT name
