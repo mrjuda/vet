@@ -1,3 +1,5 @@
+/* BUILD 1.1 */
+
 -- Animals whose name ends in "mon".
 SELECT name
 FROM animals
@@ -57,3 +59,91 @@ name NOT LIKE 'Gabumon';
 SELECT name, weight_kg
 FROM animals
 WHERE (weight_kg >= 10.4 AND weight_kg <= 17.3);
+
+
+/* BUILD 1.2 */
+
+-- How many animals are there?
+SELECT count(*) FROM animals;
+
+-- How many animals have never tried to escape?
+SELECT count(*)
+FROM animals
+WHERE escape_attempts = 0;
+
+-- What is the average weight of animals?
+SELECT AVG(weight_kg) FROM animals;
+
+-- Who escapes the most, neutered or not neutered animals?
+SELECT name,escape_attempts
+FROM animals
+WHERE escape_attempts = (
+  SELECT max (escape_attempts)
+  FROM animals
+);
+
+-- What is the minimum and maximum weight of
+-- each type of animal?
+SELECT species,MAX(weight_kg)
+FROM animals
+GROUP BY species;
+
+SELECT species,MIN(weight_kg)
+FROM animals
+GROUP BY species;
+
+-- What is the average number of escape attempts
+-- per animal type of those born between 1990 and 2000?
+
+SELECT species,AVG(escape_attempts)
+FROM animals
+WHERE date_of_birth > '1989-12-31'
+AND date_of_birth < '2001-01-01'
+GROUP BY species;
+
+SELECT name,species,date_of_birth,escape_attempts FROM animals;
+
+BEGIN;
+    UPDATE animals
+    SET species = NULL;
+COMMIT;
+
+BEGIN;
+    UPDATE animals
+    SET species = 'Unspecified';
+ROLLBACK;
+
+BEGIN;
+    UPDATE animals
+    SET species = 'digimon'
+    WHERE name LIKE '%mon';
+COMMIT;
+
+BEGIN;
+    UPDATE animals
+    SET species = 'pokemon'
+    WHERE species IS NULL;
+COMMIT;
+
+BEGIN;
+    DELETE FROM animals;
+ROLLBACK;
+
+UPDATE animals
+SET weight_kg = weight_kg * (-1)
+WHERE id = 1;
+
+BEGIN;
+    DELETE FROM animals
+    WHERE date_of_birth > '2022-01-01';
+    SAVEPOINT SP1;
+
+    UPDATE animals
+    SET weight_kg = weight_kg * -1;
+    ROLLBACK TO SAVEPOINT SP1;
+
+    UPDATE animals
+    SET weight_kg = weight_kg * -1;
+COMMIT;
+
+SELECT id,name,weight_kg FROM animals;
