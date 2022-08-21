@@ -1,4 +1,4 @@
-/* Populate database with sample data. */
+/* Populate database with data. */
 /* Build 1.1 */
 BEGIN;
   INSERT INTO animals (name,date_of_birth,escape_attempts,neutered,weight_kg)
@@ -39,6 +39,54 @@ BEGIN;
 
   INSERT INTO animals (name,date_of_birth,weight_kg,neutered,escape_attempts,species)
   VALUES ('Ditto','2022-05-14',22,true,4, NULL);
-
-  SELECT * FROM animals;
 COMMIT;
+
+SELECT * FROM animals;
+
+/* BUILD 1.3 */
+
+-- Species
+
+INSERT INTO species(name) VALUES('Pokemon');
+INSERT INTO species(name) VALUES('Digimon');
+
+SELECT * FROM species;
+
+-- Owners
+
+INSERT INTO owners(full_name,age)
+VALUES('Sam Smith',34);
+
+INSERT INTO owners(full_name,age)
+VALUES('Jenniffer Orwell',19);
+
+INSERT INTO owners(full_name,age)
+VALUES('Bob',45);
+
+INSERT INTO owners(full_name,age) 
+VALUES('Melody Pond',77);
+
+INSERT INTO owners(full_name,age) 
+VALUES('Dean Winchestter',14);
+
+INSERT INTO owners(full_name,age) 
+VALUES('Jodie Whittaker',38);
+
+SELECT * FROM owners;
+
+-- Change species ids
+
+UPDATE animals
+SET species_id = (
+  SELECT id FROM species WHERE name = 'Digimon'
+)
+WHERE name LIKE '%mon';
+
+SELECT * FROM animals;
+
+UPDATE animals
+SET species_id = (
+  SELECT id FROM species WHERE name = 'Pokemon'
+)
+WHERE species_id IS NULL;
+

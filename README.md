@@ -1,9 +1,12 @@
 # curriculum-databases-projects-template
 ## Build 1.1 SCREENSHOTS:
 ![Build 1.1 SCREENSHOTS:](VET-CLINIC-PRINTS-1.1.jpg)
-## Build 1.2 SCREENSHOTS::
+## Build 1.2 SCREENSHOTS:
 ![Build 1.2 SCREENSHOTS part 1](VET-CLINIC-PRINTS-1.2-part-1.jpg)
 ![Build 1.2 SCREENSHOTS part 2](VET-CLINIC-PRINTS-1.2-part-2.jpg)
+
+## Build 1.3 SCREENSHOTS:
+
 
 > This template should be used for database related projects at Microverse.
 > Generate your own repository, update this README and edit all files content while working on projects. You should not be adding any new files unless asked otherwise.
