@@ -210,6 +210,7 @@ GROUP BY full_name
 ORDER BY COUNT(*) DESC;
 
 /* Build 1.4 */
+/* The code below were added during the previous feature (1.3) for time sake */
 
 -- Who was the last animal seen by William Tatcher?
 SELECT animals.name as animal_name, date_of_visit, vets.name as vet_name 

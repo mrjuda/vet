@@ -55,6 +55,7 @@ ALTER TABLE animals
 SELECT * FROM species;
 
 /* BUILD 1.4 */
+/* The code below were added during the previous feature (1.3) for time sake */
 
 CREATE TABLE vets (
     id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,

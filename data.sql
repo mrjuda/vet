@@ -134,6 +134,7 @@ name = 'Boarmon';
 SELECT * FROM owners;
 
 /* BUILD 1.4 */
+/* The code below were added during the previous feature (1.3) for time sake */
 
 -- Vets
 INSERT INTO vets (name, age, date_of_graduation) 
