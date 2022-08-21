@@ -58,7 +58,7 @@ INSERT INTO owners(full_name,age)
 VALUES('Sam Smith',34);
 
 INSERT INTO owners(full_name,age)
-VALUES('Jenniffer Orwell',19);
+VALUES('JennifFer Orwell',19);
 
 INSERT INTO owners(full_name,age)
 VALUES('Bob',45);
@@ -82,11 +82,53 @@ SET species_id = (
 )
 WHERE name LIKE '%mon';
 
-SELECT * FROM animals;
-
 UPDATE animals
 SET species_id = (
   SELECT id FROM species WHERE name = 'Pokemon'
 )
 WHERE species_id IS NULL;
 
+-- Set owners
+
+UPDATE animals
+SET owner_id = (
+  SELECT id FROM owners
+  WHERE full_name = 'Sam Smith'
+)
+WHERE name = 'Agumon';
+
+UPDATE animals
+SET owner_id = (
+  SELECT id FROM owners
+  WHERE full_name = 'JennifFer Orwell'
+)
+WHERE name = 'Gabumon' OR name = 'Pikachu';
+
+UPDATE animals
+SET owner_id = (
+  SELECT id FROM owners
+  WHERE full_name = 'Bob'
+)
+WHERE name = 'Devimon' OR name = 'Plantmon';
+
+UPDATE animals
+SET owner_id = (
+  SELECT id FROM owners
+  WHERE full_name = 'Melody Pond'
+)
+WHERE name = 'Charmander'
+OR
+name = 'Squirtle'
+OR
+name = 'Blossom';
+
+UPDATE animals
+SET owner_id = (
+  SELECT id FROM owners
+  WHERE full_name = 'Dean Winchestter'
+)
+WHERE name = 'Angemon'
+OR
+name = 'Boarmon';
+
+SELECT * FROM animals;
