@@ -102,3 +102,48 @@ AND date_of_birth < '2001-01-01'
 GROUP BY species;
 
 SELECT name,species,date_of_birth,escape_attempts FROM animals;
+
+BEGIN;
+    UPDATE animals
+    SET species = NULL;
+COMMIT;
+
+BEGIN;
+    UPDATE animals
+    SET species = 'Unspecified';
+ROLLBACK;
+
+BEGIN;
+    UPDATE animals
+    SET species = 'digimon'
+    WHERE name LIKE '%mon';
+COMMIT;
+
+BEGIN;
+    UPDATE animals
+    SET species = 'pokemon'
+    WHERE species IS NULL;
+COMMIT;
+
+BEGIN;
+    DELETE FROM animals;
+ROLLBACK;
+
+UPDATE animals
+SET weight_kg = weight_kg * (-1)
+WHERE id = 1;
+
+BEGIN;
+    DELETE FROM animals
+    WHERE date_of_birth > '2022-01-01';
+    SAVEPOINT SP1;
+
+    UPDATE animals
+    SET weight_kg = weight_kg * -1;
+    ROLLBACK TO SAVEPOINT SP1;
+
+    UPDATE animals
+    SET weight_kg = weight_kg * -1;
+COMMIT;
+
+SELECT id,name,weight_kg FROM animals;
